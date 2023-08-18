@@ -21,11 +21,12 @@ public class Account {
     private LocalDate creationDate;
     private double balance;
 
+    //Propiedad agregada en la task2
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
 
-
+    //Propiedad agregada en la task3
     @OneToMany(mappedBy = "account",fetch = FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();
 
@@ -43,6 +44,14 @@ public class Account {
     }
 
     //Métodos getter and setter
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getNumber() {
         return number;
     }
@@ -62,19 +71,16 @@ public class Account {
     public double getBalance() {
         return balance;
     }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public void setBalance(double balance) {
         this.balance = balance;
     }
 
+    //Métodos adicionales
+    public String toString() {
+        return number + " " + creationDate + " " + balance ;
+    }
+
+    //Métodos agregados en la task2
     @JsonIgnore
     public Client getClient() {
         return client;
@@ -84,10 +90,7 @@ public class Account {
         this.client = client;
     }
 
-    public String toString() {
-        return number + " " + creationDate + " " + balance ;
-    }
-
+    //Metodos agregados en la task3
     public Set<Transaction> getTransactions() {
         return transactions;
     }
@@ -100,5 +103,4 @@ public class Account {
         transaction.setAccount(this);
         transactions.add(transaction);
     }
-
 }

@@ -35,6 +35,7 @@ public class ClientDTO {
         this.loans = client.getClientLoans().stream().map(clientLoan -> new ClientLoanDTO(clientLoan)).collect(Collectors.toSet());
     }
 
+
     public long getId() {
         return id;
     }
@@ -59,25 +60,7 @@ public class ClientDTO {
         return loans;
     }
 
-    public void setLoans(Set<ClientLoanDTO> loans) {
-        this.loans = loans;
-    }
 
-    public void setAccounts(Set<AccountDTO> accounts) {
-        this.accounts = accounts;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
 
 

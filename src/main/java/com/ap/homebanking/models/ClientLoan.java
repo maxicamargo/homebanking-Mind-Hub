@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 public class ClientLoan {
+    //Atributos o propiedades de la Clase
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO,generator = "native")
     @GenericGenerator(name = "native",strategy = "native")
@@ -22,18 +23,27 @@ public class ClientLoan {
     @JoinColumn(name = "loan_id")
     private Loan loan;
 
+    //Métodos de la clase
+    //Método constructor sin parámetros
     public ClientLoan() {
     }
 
+    //Método constructor con parámetros
     public ClientLoan(double amount, int payments, Client client, Loan loan) {
         this.amount = amount;
         this.payments = payments;
         this.client = client;
         this.loan = loan;
+
     }
 
+    //Métodos accesores getters y setters
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public double getAmount() {
@@ -69,5 +79,12 @@ public class ClientLoan {
     public void setLoan(Loan loan) {
         this.loan = loan;
     }
-}
 
+    //Métodos adicionales
+    public String toString(){
+        return client + " "+ loan+" "+amount+" "+payments;
+    }
+
+
+
+}

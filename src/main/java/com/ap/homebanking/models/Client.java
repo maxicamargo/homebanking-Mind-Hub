@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -21,11 +22,12 @@ public class Client {
     private String firstName;
     private String lastName;
     private String email;
+    //Propiedad agregada en la task2
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<Account> accounts = new HashSet<>();
 
-
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    //Propiedad agregada en la task4
+    @OneToMany(mappedBy = "client",fetch = FetchType.EAGER)
     private Set<ClientLoan> clientLoans = new HashSet<>();
 
 
@@ -45,6 +47,10 @@ public class Client {
     //Métodos accesores getters y setters
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -67,18 +73,16 @@ public class Client {
         return email;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
+    //Métodos adicionales
     public String toString(){
         return firstName + " "+ lastName;
     }
 
+    //Metodos agregados en la task2
     public Set<Account> getAccounts() {
         return accounts;
     }
@@ -92,6 +96,8 @@ public class Client {
         accounts.add(account);
     }
 
+    //Métodos agregados en la task4
+
     public Set<ClientLoan> getClientLoans() {
         return clientLoans;
     }
@@ -104,10 +110,12 @@ public class Client {
         clientLoan.setClient(this);
         clientLoans.add(clientLoan);
     }
+
     @JsonIgnore
     public List<Loan> getLoans(){
         return clientLoans.stream().map(loans -> loans.getLoan()).collect(toList());
     }
+
 
 }
 

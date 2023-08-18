@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -21,18 +22,16 @@ public class Loan {
     private double maxAmount;
 
     @ElementCollection
-    @Column(name = "payment")
+    //@Column(name = "payment")
     private List<Integer> payments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "loan",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "loan", fetch = FetchType.EAGER)
     private Set<ClientLoan> clientLoans = new HashSet<>();
-
 
     //Métodos de la clase
     //Método constructor sin parámetros
     public Loan() {
     }
-
 
     //Método constructor con parámetros
     public Loan(String name, double maxAmount, List<Integer> payments) {
@@ -40,12 +39,14 @@ public class Loan {
         this.maxAmount = maxAmount;
         this.payments = payments;
     }
-
     //Métodos accesores getters y setters
-
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -72,12 +73,18 @@ public class Loan {
         this.payments = payments;
     }
 
-    public Set<ClientLoan> getClientLoans() {
+    //Métodos adicionales
+    public String toString() {
+        return name + " " + maxAmount + " " + payments ;
+    }
+
+    //Métodos para la task 4
+    public Set<ClientLoan> getClientsLoans() {
         return clientLoans;
     }
 
-    public void setClientLoans(Set<ClientLoan> clientLoans) {
-        this.clientLoans = clientLoans;
+    public void setClientsLoans(Set<ClientLoan> clientsLoans) {
+        this.clientLoans = clientsLoans;
     }
 
     public void addLoan(ClientLoan clientLoan){
@@ -88,5 +95,5 @@ public class Loan {
     public List<Client> getClients(){
         return clientLoans.stream().map(clients -> clients.getClient()).collect(toList());
     }
-}
 
+}

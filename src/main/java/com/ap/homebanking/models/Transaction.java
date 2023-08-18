@@ -30,6 +30,7 @@ public class Transaction {
 
     }
 
+    //Método constructor con parámetros
     public Transaction(TransactionType type, double amount,String description, LocalDateTime date){
         this.type = type;
         this.amount = amount;
@@ -38,8 +39,6 @@ public class Transaction {
     }
 
     //Metodos getter and setter
-
-
     public long getId() {
         return id;
     }
