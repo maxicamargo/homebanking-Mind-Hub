@@ -1,15 +1,11 @@
 package com.ap.homebanking.controllers;
 
 import com.ap.homebanking.dtos.AccountDTO;
-import com.ap.homebanking.models.Account;
-import com.ap.homebanking.models.Client;
 import com.ap.homebanking.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;

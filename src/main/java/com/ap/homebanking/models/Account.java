@@ -23,11 +23,11 @@ public class Account {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
-    private Client owner;
+    private Client client;
 
 
     @OneToMany(mappedBy = "account",fetch = FetchType.EAGER)
-    Set<Transaction> transactions = new HashSet<>();
+    private Set<Transaction> transactions = new HashSet<>();
 
     //Métodos
     //Método constructor vacío
@@ -76,12 +76,12 @@ public class Account {
     }
 
     @JsonIgnore
-    public Client getOwner() {
-        return owner;
+    public Client getClient() {
+        return client;
     }
 
-    public void setOwner(Client owner) {
-        this.owner = owner;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public String toString() {
