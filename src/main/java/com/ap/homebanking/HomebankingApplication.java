@@ -21,7 +21,7 @@ public class HomebankingApplication {
 
 	//Agregar al CommandLineRunner , LoanRepository loanRepository, ClientLoanRepository clientLoanRepository
 	@Bean
-	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository,ClientLoanRepository clientLoanRepository){
+	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository,ClientLoanRepository clientLoanRepository,CardRepository cardRepository){
 		return (args -> {
 
 		//Creacion de cuentas 1 y 2
@@ -119,6 +119,29 @@ public class HomebankingApplication {
 		clientLoanRepository.save(clientLoan2);
 		clientLoanRepository.save(clientLoan3);
 		clientLoanRepository.save(clientLoan4);
+
+
+		//Creamos las tarjetas
+		Card card1 = new Card(client1.getFirstName()+" "+client1.getLastName(),CardType.DEBIT,CardColor.GOLD,"3446-5573-3568-5678",LocalDate.now(),LocalDate.now().plusYears(5),314);
+		Card card2 = new Card(client1.getFirstName()+" "+client1.getLastName(),CardType.CREDIT,CardColor.TITANIUM,"4566-3489-4896-5678",LocalDate.now(),LocalDate.now().plusYears(5),829);
+
+		Card card3 = new Card(client2.getFirstName()+" "+client2.getLastName(),CardType.CREDIT,CardColor.SILVER,"2894-6598-3568-3489",LocalDate.now(),LocalDate.now().plusYears(3),642);
+
+
+
+
+		//Asignamos las tarjetas 1 y 2 al cliente 1
+		client1.addCard(card1);
+		client1.addCard(card2);
+
+		//Asignamos la tarjeta 3 al cliente 2
+		client2.addCard(card3);
+
+		//Guardamos las tarjetas creadas
+		cardRepository.save(card1);
+		cardRepository.save(card2);
+		cardRepository.save(card3);
+
 
 		});
 	}

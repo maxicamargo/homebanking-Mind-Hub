@@ -30,6 +30,10 @@ public class Client {
     @OneToMany(mappedBy = "client",fetch = FetchType.EAGER)
     private Set<ClientLoan> clientLoans = new HashSet<>();
 
+    //Propiedad agregada en la task5
+    @OneToMany(mappedBy = "client",fetch = FetchType.EAGER)
+    private Set<Card> cards = new HashSet<>();
+
 
     //Métodos de la clase
     //Método constructor sin parámetros
@@ -117,6 +121,21 @@ public class Client {
     }
 
 
+    //Métodos agregados en la task5
+
+
+    public Set<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(Set<Card> cards) {
+        this.cards = cards;
+    }
+
+    public void addCard(Card card){
+        card.setClientCard(this);
+        cards.add(card);
+    }
 }
 
 

@@ -90,7 +90,7 @@ public class Account {
         this.client = client;
     }
 
-    //Metodos agregados en la task3
+    //Métodos agregados en la task3
     public Set<Transaction> getTransactions() {
         return transactions;
     }
